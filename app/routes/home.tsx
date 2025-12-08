@@ -1,6 +1,6 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
-import type Navbar from "~/components/Navbar";
+// import { Welcome } from "../welcome/welcome";
+import  Navbar from "~/components/Navbar";
 import { resumes } from "../../constants";
 // import { callbackify } from "util";
 import ResumeCard from "~/components/ResumeCard";
@@ -33,6 +33,7 @@ export default function Home() {
 
 
   return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+    <Navbar />
 
     <section className="main-section">
       <div className="page-heading py-16">
