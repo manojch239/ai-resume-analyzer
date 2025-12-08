@@ -1,4 +1,4 @@
-import { sep } from 'path';
+// import { sep } from 'path'; // ❌ Remove this line
 import React, { use, useEffect } from 'react'
 import { useLocation, useNavigate, type NavigateFunction } from 'react-router';
 import { usePuterStore } from '~/lib/puter';
@@ -8,7 +8,7 @@ import { usePuterStore } from '~/lib/puter';
 export const metadata = {
   title: 'Resumind | Auth',
   name : 'description',
-  description: 'Authentication Page',
+//   description: 'Authentication Page',
   content : 'Login to your account'
 }
 
@@ -21,6 +21,7 @@ const auth = () => {
     useEffect(() => {
         if (auth.isAuthenticated) {
             // Redirect to home or dashboard after successful login
+            console.log('Authenticated, navigating to:', next || '/home');
             navigate(next);
             // window.location.href = '/';
         }
@@ -37,6 +38,7 @@ const auth = () => {
                 <div>
                     {isLoading? (
                         <button className='auth-button animate-pulse'>
+                            {/* console.log('Loading...') */}
                             <p>Signing you in ...</p>
                         </button>
                     ) : (

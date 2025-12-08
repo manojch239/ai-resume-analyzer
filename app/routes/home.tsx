@@ -2,11 +2,12 @@ import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
 import type Navbar from "~/components/Navbar";
 import { resumes } from "../../constants";
-import { callbackify } from "util";
+// import { callbackify } from "util";
 import ResumeCard from "~/components/ResumeCard";
 import { useLocation, useNavigate, type NavigateFunction } from 'react-router';
 import { usePuterStore } from '~/lib/puter';
 import { useEffect } from "react";
+// import auth from "./auth";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -16,17 +17,16 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-   const { isLoading, auth } = usePuterStore();
-    const location = useLocation();
-    const next: string = location.search.split('next=')[1];
+   const { auth } = usePuterStore();
+    // const location = useLocation();
+    // const next: string = location.search.split('next=')[1];
     const navigate: NavigateFunction = useNavigate();
 
     useEffect(() => {
-        if (!auth.isAuthenticated) {
+        if (!auth.isAuthenticated) 
             // Redirect to home or dashboard after successful login
             navigate('auth?next=/');
             // window.location.href = '/';
-        }
     }, [auth.isAuthenticated]);
 
 
@@ -39,7 +39,6 @@ export default function Home() {
          <h1>Track Your Application & Resume Ratings</h1>
          <h2>Review your submission and check AI powered feedback.</h2>
       </div>
-    </section>
 
     {resumes.length > 0 && (
     <div className="resumes-section">
@@ -48,5 +47,6 @@ export default function Home() {
       ))}
     </div>
     )}
+   </section>
   </main>
 }
