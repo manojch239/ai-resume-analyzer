@@ -9,11 +9,20 @@ const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath }
 
     useEffect(() => {
         const loadResume = async () => {
-            const blob = await fs.read(imagePath);
-            if(!blob) return;
-            let url = URL.createObjectURL(blob);
-            setResumeUrl(url);
-        }
+            try {
+                const blob = await fs.read(imagePath);
+                if (!blob) {
+                    console.warn("Resume image not found:", imagePath);
+                    setResumeUrl(""); // Optionally set a placeholder image URL here
+                    return;
+                }
+                let url = URL.createObjectURL(blob);
+                setResumeUrl(url);
+            } catch (err) {
+                console.error("Error loading resume image:", err);
+                setResumeUrl(""); // Optionally set a placeholder image URL here
+            }
+        };
 
         loadResume();
     }, [imagePath]);
@@ -30,7 +39,7 @@ const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath }
                     <ScoreCircle score={feedback.overallScore} />
                 </div>
             </div>
-            {resumeUrl && (
+            {/* {resumeUrl && ( */}
                 <div className="gradient-border animate-in fade-in duration-1000">
                     <div className="w-full h-full">
                         <img
@@ -40,7 +49,7 @@ const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath }
                         />
                     </div>
                 </div>
-                )}
+                {/* )} */}
         </Link>
     )
 }
