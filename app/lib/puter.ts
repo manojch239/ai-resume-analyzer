@@ -350,9 +350,11 @@ export const usePuterStore = create<PuterStore>((set, get) => {
           ],
         },
       ],
-      { model: "claude-3-7-sonnet" }
+      { model: "gpt-5.1" }
     ) as Promise<AIResponse | undefined>;
   };
+
+  // Available models: claude-opus-4-5-20251101, claude-opus-4-5-latest, claude-opus-4-5, claude-opus-4.5, claude-haiku-4-5-20251001, claude-haiku-4.5, claude-haiku-4-5, claude-4-5-haiku, claude-sonnet-4-5-20250929, claude-sonnet-4.5, claude-sonnet-4-5, claude-opus-4-1-20250805, claude-opus-4-1, claude-opus-4-20250514, claude-opus-4, claude-opus-4-latest, claude-sonnet-4-20250514, claude-sonnet-4, claude-sonnet-4-latest, claude-3-7-sonnet-20250219, claude-3-7-sonnet-latest, claude-3-5-sonnet-20241022, claude-3-5-sonnet-latest, claude-3-5-sonnet-20240620, claude-3-haiku-20240307, gpt-5.2-chat-latest, gpt-5.2-chat, gpt-5.2-pro-2025-12-11, gpt-5.2-pro, gpt-5.2-2025-12-11, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5-2025-08-07, gpt-5, gpt-5-mini-2025-08-07, gpt-5-mini, gpt-5-nano-2025-08-07, gpt-5-nano, gpt-5-chat-latest, gpt-4o, gpt-4o-mini, o1, o1-mini, o1-pro, o3, o3-mini, o4-mini, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano,…" }
 
   const img2txt = async (image: string | File | Blob, testMode?: boolean) => {
     const puter = getPuter();
